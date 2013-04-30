@@ -12,6 +12,7 @@ from vmstat import VMStat
 from meminfo import MemInfo
 from partitions import Partitions
 from slabinfo import SlabInfo
+from kallsyms import KAllSyms
 
 cmdline = CMDLine()
 modules = Modules()
@@ -27,3 +28,4 @@ vmstat = VMStat()
 meminfo = MemInfo()
 partitions = Partitions()
 slabinfo = SlabInfo()
+kallsyms = KAllSyms()
