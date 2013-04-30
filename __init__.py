@@ -9,6 +9,7 @@ from uptime import Uptime
 from loadavg import LoadAvg
 from version import Version
 from vmstat import VMStat
+from meminfo import MemInfo
 
 cmdline = CMDLine()
 modules = Modules()
@@ -21,3 +22,4 @@ uptime = Uptime()
 loadavg = LoadAvg()
 version = Version()
 vmstat = VMStat()
+meminfo = MemInfo()

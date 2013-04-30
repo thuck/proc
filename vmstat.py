@@ -11,19 +11,17 @@ class VMStat(ProcFile):
         for line in self._readfile():
             stat_info = line.split()
             if stat_name == stat_info[0]:
-                return stat_info[1]
+                return int(stat_info[1])
 
         else:
             return default
 
     def __getattr__(self, name):
         if name in self.names():
-            return int(self.get(name))
+            return self.get(name)
 
         else:
             raise AttributeError
-
-    
 
 
 if __name__ == '__main__':
