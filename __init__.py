@@ -11,6 +11,7 @@ from version import Version
 from vmstat import VMStat
 from meminfo import MemInfo
 from partitions import Partitions
+from slabinfo import SlabInfo
 
 cmdline = CMDLine()
 modules = Modules()
@@ -25,3 +26,4 @@ version = Version()
 vmstat = VMStat()
 meminfo = MemInfo()
 partitions = Partitions()
+slabinfo = SlabInfo()
