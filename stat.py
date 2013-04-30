@@ -4,7 +4,6 @@ from collections import namedtuple
 class Stat(ProcFile):
     filename = '/proc/stat'
     CpuStat = namedtuple('CpuStat', ['user', 'nice', 'sys', 'idle']) # Expand this to get more specific information based on the arc
-    Simple = namedtuple('Simple', ['total'])
 
     def names(self):
         return [line.split()[0] for line in self._readfile()]
@@ -25,7 +24,7 @@ class Stat(ProcFile):
                 return self.CpuStat(int(user), int(nice), int(sys), int(idle))
 
             else:
-                return self.Simple(self.get(name)[0])
+                return int(self.get(name)[0])
 
         else:
             raise AttributeError
@@ -43,5 +42,5 @@ if __name__ == '__main__':
     print stat.cpu.sys
     print stat.cpu.idle
     print stat.processes
-    print stat.processes.total
-    print stat.procs_running.total
+    print stat.processes
+    print stat.procs_running
