@@ -11,10 +11,6 @@ class DiskStats(ProcFile):
                                        'time_writing', 'current_io_progress',
                                        'time_io', 'time_io_since_last_update'])
 
-    @property
-    def value(self):
-        return ' '.join(self._readfile())
-
     def names(self):
         return [line.split()[2] for line in self._readfile()]
 

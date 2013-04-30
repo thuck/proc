@@ -5,6 +5,7 @@ from cgroups import CGroups
 from diskstats import DiskStats
 from stat import Stat
 from softirqs import SoftIrqs
+from uptime import Uptime
 
 cmdline = CMDLine()
 modules = Modules()
@@ -13,3 +14,4 @@ cgroups = CGroups()
 diskstats = DiskStats()
 stat = Stat()
 softirqs = SoftIrqs()
+uptime = Uptime()
