@@ -10,6 +10,7 @@ from loadavg import LoadAvg
 from version import Version
 from vmstat import VMStat
 from meminfo import MemInfo
+from partitions import Partitions
 
 cmdline = CMDLine()
 modules = Modules()
@@ -23,3 +24,4 @@ loadavg = LoadAvg()
 version = Version()
 vmstat = VMStat()
 meminfo = MemInfo()
+partitions = Partitions()
