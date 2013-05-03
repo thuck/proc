@@ -37,6 +37,11 @@ class PId(object):
             'policy', 'delayacct_blkio_ticks', 'guest_time', 'cguest_time', 'start_data',
             'end_data', 'start_brk', 'arg_start', 'arg_end', 'env_start', 'env_end'])
 
+    StatM = namedtuple('StatM', ['size', 'resident', 'share',
+                                'text', 'lib', 'data', 'dt'])
+
+    FileDescriptor = namedtuple('FileDescriptor', ['fd', 'filename'])
+
     def __init__(self, pid):
         self.pid = pid
         #Generic Proc File
@@ -157,7 +162,7 @@ class PId(object):
         pid = int(values[0])
         comm = values[1]
         state = values[2]
-        tmp_tuple = tuple(map(int, values[4:52]))
+        tmp_tuple = tuple(int(value) for value in values[4:52])
         if len(values) < 51:
             values.extend([]*(51 - len(values)))
             
@@ -165,49 +170,92 @@ class PId(object):
 
         return stat
 
+    @property
+    def statm(self):
+        self.gpf.filename = '/proc/%s/statm' % self.pid
+        values = self.gpf._readfile()[0].split()
+        return self.StatM(*tuple(int(value) for value in values))
+
+    @property
+    def fd(self):
+        fd_dir = '/proc/%s/fd' % self.pid
+        listdir = [int(i) for i in os.listdir(fd_dir)]
+        files = (os.readlink('%s/%s' % (fd_dir, file_)) for file_ in listdir)
+        return dict(zip(listdir, files))
+
+    @property
+    def task(self):
+        return Task(self.pid)
+
+    @property
+    def thread(self):
+        return Task(self.pid)
+
+class Thread(PId):
+    @property
+    def task(self):
+        raise AttributeError
 
 class Process(object):
     directory = '/proc'
 
-    def names(self):
-        return ['p%s' % pid for pid in os.listdir(self.directory) if pid.isdigit()]
+    def keys(self):
+        return [int(pid) for pid in os.listdir(self.directory) if pid.isdigit()]
 
-    def __getattr__(self, name):
-        if name in self.names():
-            return PId(name.replace('p',''))
+    def __getitem__(self, key):
+        if key in self.keys():
+            return PId(key)
 
         else:
-            raise AttributeError
+            raise KeyError
+
+class Task(Process):
+    def __init__(self, pid):
+        Process.__init__(self)
+        self.directory = '/proc/%s/task' % pid
+
+    def __getitem__(self, key):
+        if key in self.keys():
+            return Thread(key)
+
+        else:
+            raise KeyError
 
 
 if __name__ == '__main__':
     process = Process()
 #    print process.names()
-#    print process.p1
-    print process.p1.id_
-    print process.p1.oom_score
-    print process.p12745.oom_adj
-    process.p12745.oom_adj = 1
-    print process.p12745.oom_adj
-    print process.p12745.oom_score_adj
-    process.p12745.oom_score_adj = 0
-    print process.p12745.oom_score_adj
-    print process.p12745.cpuset
-    print process.p12745.sessionid
-    print process.p12745.personality
-    print process.p12745.coredump_filter
-    print process.p12745.cmdline
-    print process.p12745.environ
-    print process.p12745.exe
-    print process.p12745.comm
-    print process.p12745.cpuset
-    print process.p12745.cwd
-    print process.p12745.io.rchar
-    print process.p12745.io.read_bytes
-    print process.p12745.loginuid
-    print process.p12745.stat.pid
-    print process.p12745.stat.comm
-    print process.p12745.stat.guest_time
-    print process.p12745.stat.rss
-    print process.p12745.stat.vsize
-    print process.p12745.stat.processor
+#    print process[1]
+    print process[1].id_
+    print process[1].oom_score
+    print process[12745].oom_adj
+    process[12745].oom_adj = 1
+    print process[12745].oom_adj
+    print process[12745].oom_score_adj
+    process[12745].oom_score_adj = 0
+    print process[12745].oom_score_adj
+    print process[12745].cpuset
+    print process[12745].sessionid
+    print process[12745].personality
+    print process[12745].coredump_filter
+    print process[12745].cmdline
+    print process[12745].environ
+    print process[12745].exe
+    print process[12745].comm
+    print process[12745].cpuset
+    print process[12745].cwd
+    print process[12745].io.rchar
+    print process[12745].io.read_bytes
+    print process[12745].loginuid
+    print process[12745].stat.pid
+    print process[12745].stat.comm
+    print process[12745].stat.guest_time
+    print process[12745].stat.rss
+    print process[12745].stat.vsize
+    print process[12745].stat.processor
+    print process[12745].statm.size
+    print process[12745].statm.dt
+    print process[12745].fd
+    print process[12745].fd[0]
+    print process[12745].task.keys()
+    print process[12745].task[12753]
