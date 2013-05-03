@@ -34,7 +34,8 @@ class PId(object):
             'starttime', 'vsize', 'rss', 'rsslim', 'startcode', 'endcode', 'startstack',
             'kstkesp', 'kstkeip', 'signal', 'blocked', 'sigignore', 'sigcatch',
             'wchan', 'nswap', 'cnswap', 'exit_signal', 'processor', 'rt_priority',
-            'policy', 'delayacct_blkio_ticks', 'guest_time', 'cguest_time'])
+            'policy', 'delayacct_blkio_ticks', 'guest_time', 'cguest_time', 'start_data',
+            'end_data', 'start_brk', 'arg_start', 'arg_end', 'env_start', 'env_end'])
 
     def __init__(self, pid):
         self.pid = pid
@@ -151,13 +152,15 @@ class PId(object):
 
     @property
     def stat(self):
-        #not working so far
         self.gpf.filename = '/proc/%s/stat' % self.pid
         values = self.gpf._readfile()[0].split()
         pid = int(values[0])
         comm = values[1]
         state = values[2]
-        tmp_tuple = tuple(map(int, values[3:44]))
+        tmp_tuple = tuple(map(int, values[4:52]))
+        if len(values) < 51:
+            values.extend([]*(51 - len(values)))
+            
         stat = self.Stat(pid, comm, state, *tmp_tuple)
 
         return stat
@@ -206,4 +209,5 @@ if __name__ == '__main__':
     print process.p12745.stat.comm
     print process.p12745.stat.guest_time
     print process.p12745.stat.rss
-    print process.p12745.stat.rsslim
+    print process.p12745.stat.vsize
+    print process.p12745.stat.processor
