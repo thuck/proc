@@ -13,6 +13,8 @@ from meminfo import MemInfo
 from partitions import Partitions
 from slabinfo import SlabInfo
 from kallsyms import KAllSyms
+from process import Process
+from consoles import Consoles
 
 cmdline = CMDLine()
 modules = Modules()
@@ -29,3 +31,5 @@ meminfo = MemInfo()
 partitions = Partitions()
 slabinfo = SlabInfo()
 kallsyms = KAllSyms()
+process = Process()
+consoles = Consoles()
