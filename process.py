@@ -162,11 +162,11 @@ class PId(object):
         pid = int(values[0])
         comm = values[1]
         state = values[2]
-        tmp_tuple = tuple(int(value) for value in values[4:52])
+        tmp = [int(value) for value in values[3:52]]
         if len(values) < 51:
-            values.extend([]*(51 - len(values)))
+            tmp.extend([None]*(51 - len(values)))
             
-        stat = self.Stat(pid, comm, state, *tmp_tuple)
+        stat = self.Stat(pid, comm, state, *tuple(tmp))
 
         return stat
 
