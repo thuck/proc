@@ -162,7 +162,7 @@ class PId(object):
         pid = int(values[0])
         comm = values[1]
         state = values[2]
-        tmp = [int(value) for value in values[3:52]]
+        tmp = [int(value) for value in values[3:51]]
         if len(values) < 51:
             tmp.extend([None]*(51 - len(values)))
             
