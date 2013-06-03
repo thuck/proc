@@ -112,7 +112,7 @@ class PId(object):
     def cmdline(self):
         self.gpf.filename = '/proc/%s/cmdline' % self.pid
         value = self.gpf._readfile()
-        return value[0].split('\0')[:-1]
+        return value[0].split('\0')[:-1] if value else []
 
     @property
     def environ(self):
