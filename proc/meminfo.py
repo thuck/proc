@@ -7,7 +7,7 @@ class MemInfo(ProcFile):
     def names(self):
         return [line.split(':')[0].lower() for line in self._readfile()]
 
-    def get(self, name, default = None):
+    def get(self, name, default=None):
         for line in self._readfile():
             mem_info = line.split()
             if name + ':' == mem_info[0].lower():
