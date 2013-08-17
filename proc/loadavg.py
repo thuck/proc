@@ -1,5 +1,5 @@
 from .basic import ProcFile
-from collections import namedtuple
+
 
 class LoadAvg(ProcFile):
     filename = '/proc/loadavg'
@@ -29,11 +29,10 @@ class LoadAvg(ProcFile):
         return float(self._readfile()[0].split()[4])
 
 if __name__ == '__main__':
-    loadavg = LoadAvg()
-    print(loadavg.five)
-    print(loadavg.ten)
-    print(loadavg.fifteen)
-    print(loadavg.runnable_entities)
-    print(loadavg.existing_entities)
-    print(loadavg.last_pid_created)
-    
+    LOADAVG = LoadAvg()
+    print(LOADAVG.five)
+    print(LOADAVG.ten)
+    print(LOADAVG.fifteen)
+    print(LOADAVG.runnable_entities)
+    print(LOADAVG.existing_entities)
+    print(LOADAVG.last_pid_created)
