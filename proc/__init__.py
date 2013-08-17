@@ -15,6 +15,7 @@ from slabinfo import SlabInfo
 from kallsyms import KAllSyms
 from process import Process
 from consoles import Consoles
+from interrupts import Interrupts
 
 cmdline = CMDLine()
 modules = Modules()
@@ -33,3 +34,4 @@ slabinfo = SlabInfo()
 kallsyms = KAllSyms()
 process = Process()
 consoles = Consoles()
+interrupts = Interrupts()
