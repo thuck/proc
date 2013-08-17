@@ -1,6 +1,7 @@
 from .basic import ProcFile
 from collections import namedtuple
 
+
 class CGroups(ProcFile):
     filename = '/proc/cgroups'
     CGroup = namedtuple('CGroup', ['hierarchy', 'num_cgroups', 'enabled'])
@@ -12,7 +13,7 @@ class CGroups(ProcFile):
     def names(self):
         return [cg_info.split('\t')[0] for cg_info in self._readfile()]
 
-    def get(self, cg_name, default = None):
+    def get(self, cg_name, default=None):
         for line in self._readfile():
             line = line.split('\t')
             if cg_name == line[0]:
@@ -31,9 +32,9 @@ class CGroups(ProcFile):
 
 
 if __name__ == '__main__':
-    cgroups = CGroups()
-    print(cgroups.cpuset)
-    print(cgroups.cpuset.hierarchy)
-    print(cgroups.cpuset.num_cgroups)
-    print(cgroups.cpuset.enabled)
-    print(cgroups.perf_event)
+    CGROUPS = CGroups()
+    print(CGROUPS.cpuset)
+    print(CGROUPS.cpuset.hierarchy)
+    print(CGROUPS.cpuset.num_cgroups)
+    print(CGROUPS.cpuset.enabled)
+    print(CGROUPS.perf_event)
