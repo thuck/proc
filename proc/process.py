@@ -55,13 +55,13 @@ class PId(object):
     def oom_score(self):
         self.gpf.filename = '/proc/%s/oom_score' % self.pid
         score = self.gpf._readfile()
-        return score[0]
+        return int(score[0])
 
     @property
     def oom_adj(self):
         self.gpf.filename = '/proc/%s/oom_adj' % self.pid
         score = self.gpf._readfile()
-        return score[0]
+        return int(score[0])
 
     @oom_adj.setter
     def oom_adj(self, line):
@@ -89,7 +89,7 @@ class PId(object):
     def sessionid(self):
         self.gpf.filename = '/proc/%s/sessionid' % self.pid
         value = self.gpf._readfile()
-        return value[0]
+        return int(value[0])
 
     @property
     def personality(self):
@@ -148,7 +148,7 @@ class PId(object):
     def loginuid(self):
         self.gpf.filename = '/proc/%s/loginuid' % self.pid
         value = self.gpf._readfile()
-        return value[0]
+        return int(value[0])
 
     @loginuid.setter
     def loginuid(self, line):
