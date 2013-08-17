@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class CGroups(ProcFile):
@@ -32,8 +32,8 @@ class CGroups(ProcFile):
 
 if __name__ == '__main__':
     cgroups = CGroups()
-    print cgroups.cpuset
-    print cgroups.cpuset.hierarchy
-    print cgroups.cpuset.num_cgroups
-    print cgroups.cpuset.enabled
-    print cgroups.perf_event
+    print(cgroups.cpuset)
+    print(cgroups.cpuset.hierarchy)
+    print(cgroups.cpuset.num_cgroups)
+    print(cgroups.cpuset.enabled)
+    print(cgroups.perf_event)

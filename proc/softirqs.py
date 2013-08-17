@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class SoftIrqs(ProcFile):
@@ -36,6 +36,6 @@ class SoftIrqs(ProcFile):
 
 if __name__ == '__main__':
     softirqs = SoftIrqs()
-    print softirqs.names()
-    print softirqs.get('cpu1')
-    print softirqs.cpu1.timer
+    print(softirqs.names())
+    print(softirqs.get('cpu1'))
+    print(softirqs.cpu1.timer)

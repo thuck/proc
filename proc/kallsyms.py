@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class KAllSyms(ProcFile):
@@ -28,8 +28,8 @@ class KAllSyms(ProcFile):
 if __name__ == '__main__':
     kallsyms = KAllSyms()
 #    print kallsyms.names()
-    print kallsyms.get('show_ep_bInterval')
-    print kallsyms.show_ep_bInterval.address
-    print kallsyms.show_ep_bInterval.type
-    print kallsyms.show_ep_bInterval.module
+    print(kallsyms.get('show_ep_bInterval'))
+    print(kallsyms.show_ep_bInterval.address)
+    print(kallsyms.show_ep_bInterval.type)
+    print(kallsyms.show_ep_bInterval.module)
     

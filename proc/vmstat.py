@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class VMStat(ProcFile):
@@ -26,6 +26,6 @@ class VMStat(ProcFile):
 
 if __name__ == '__main__':
     vmstat = VMStat()
-    print vmstat.pgscan_kswapd_normal
-    print vmstat.nr_free_pages
+    print(vmstat.pgscan_kswapd_normal)
+    print(vmstat.nr_free_pages)
     

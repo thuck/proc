@@ -1,5 +1,5 @@
 import os
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class IO(ProcFile):
@@ -181,7 +181,7 @@ class PId(object):
         fd_dir = '/proc/%s/fd' % self.pid
         listdir = [int(i) for i in os.listdir(fd_dir)]
         files = (os.readlink('%s/%s' % (fd_dir, file_)) for file_ in listdir)
-        return dict(zip(listdir, files))
+        return dict(list(zip(listdir, files)))
 
     @property
     def task(self):
@@ -203,7 +203,7 @@ class Process(object):
         return [int(pid) for pid in os.listdir(self.directory) if pid.isdigit()]
 
     def __getitem__(self, key):
-        if key in self.keys():
+        if key in list(self.keys()):
             return PId(key)
 
         else:
@@ -215,7 +215,7 @@ class Task(Process):
         self.directory = '/proc/%s/task' % pid
 
     def __getitem__(self, key):
-        if key in self.keys():
+        if key in list(self.keys()):
             return Thread(key)
 
         else:
@@ -226,36 +226,36 @@ if __name__ == '__main__':
     process = Process()
 #    print process.names()
 #    print process[1]
-    print process[1].id_
-    print process[1].oom_score
-    print process[12745].oom_adj
+    print(process[1].id_)
+    print(process[1].oom_score)
+    print(process[12745].oom_adj)
     process[12745].oom_adj = 1
-    print process[12745].oom_adj
-    print process[12745].oom_score_adj
+    print(process[12745].oom_adj)
+    print(process[12745].oom_score_adj)
     process[12745].oom_score_adj = 0
-    print process[12745].oom_score_adj
-    print process[12745].cpuset
-    print process[12745].sessionid
-    print process[12745].personality
-    print process[12745].coredump_filter
-    print process[12745].cmdline
-    print process[12745].environ
-    print process[12745].exe
-    print process[12745].comm
-    print process[12745].cpuset
-    print process[12745].cwd
-    print process[12745].io.rchar
-    print process[12745].io.read_bytes
-    print process[12745].loginuid
-    print process[12745].stat.pid
-    print process[12745].stat.comm
-    print process[12745].stat.guest_time
-    print process[12745].stat.rss
-    print process[12745].stat.vsize
-    print process[12745].stat.processor
-    print process[12745].statm.size
-    print process[12745].statm.dt
-    print process[12745].fd
-    print process[12745].fd[0]
-    print process[12745].task.keys()
-    print process[12745].task[12753]
+    print(process[12745].oom_score_adj)
+    print(process[12745].cpuset)
+    print(process[12745].sessionid)
+    print(process[12745].personality)
+    print(process[12745].coredump_filter)
+    print(process[12745].cmdline)
+    print(process[12745].environ)
+    print(process[12745].exe)
+    print(process[12745].comm)
+    print(process[12745].cpuset)
+    print(process[12745].cwd)
+    print(process[12745].io.rchar)
+    print(process[12745].io.read_bytes)
+    print(process[12745].loginuid)
+    print(process[12745].stat.pid)
+    print(process[12745].stat.comm)
+    print(process[12745].stat.guest_time)
+    print(process[12745].stat.rss)
+    print(process[12745].stat.vsize)
+    print(process[12745].stat.processor)
+    print(process[12745].statm.size)
+    print(process[12745].statm.dt)
+    print(process[12745].fd)
+    print(process[12745].fd[0])
+    print(list(process[12745].task.keys()))
+    print(process[12745].task[12753])

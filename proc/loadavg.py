@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class LoadAvg(ProcFile):
@@ -30,10 +30,10 @@ class LoadAvg(ProcFile):
 
 if __name__ == '__main__':
     loadavg = LoadAvg()
-    print loadavg.five
-    print loadavg.ten
-    print loadavg.fifteen
-    print loadavg.runnable_entities
-    print loadavg.existing_entities
-    print loadavg.last_pid_created
+    print(loadavg.five)
+    print(loadavg.ten)
+    print(loadavg.fifteen)
+    print(loadavg.runnable_entities)
+    print(loadavg.existing_entities)
+    print(loadavg.last_pid_created)
     

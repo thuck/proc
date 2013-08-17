@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class Interrupt(object):
@@ -47,6 +47,6 @@ class Interrupts(ProcFile):
 
 if __name__ == '__main__':
     interrupts = Interrupts()
-    print interrupts.names()
-    print interrupts.get('cpu1')
-    print interrupts.cpu1.timer
+    print(interrupts.names())
+    print(interrupts.get('cpu1'))
+    print(interrupts.cpu1.timer)

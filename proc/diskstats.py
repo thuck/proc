@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class DiskStats(ProcFile):
@@ -49,11 +49,11 @@ class DiskStats(ProcFile):
 if __name__ == '__main__':
     diskstats = DiskStats()
 #    print(diskstats.value)
-    print(diskstats.names())
-    print(diskstats.get('sda1'))
-    print diskstats.sda.major
-    print diskstats.sda.minor
-    print diskstats.sda.reads
-    print diskstats.sda.writes
-    print diskstats.sda.time_io_since_last_update
+    print((diskstats.names()))
+    print((diskstats.get('sda1')))
+    print(diskstats.sda.major)
+    print(diskstats.sda.minor)
+    print(diskstats.sda.reads)
+    print(diskstats.sda.writes)
+    print(diskstats.sda.time_io_since_last_update)
 

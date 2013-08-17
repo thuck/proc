@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class Stat(ProcFile):
@@ -32,15 +32,15 @@ class Stat(ProcFile):
 
 if __name__ == '__main__':
     stat = Stat()
-    print stat.names()
-    print stat.get('cpu')
-    print stat.get('cpu0')
-    print stat.get('ctxt')
-    print stat.cpu
-    print stat.cpu.user
-    print stat.cpu.nice
-    print stat.cpu.sys
-    print stat.cpu.idle
-    print stat.processes
-    print stat.processes
-    print stat.procs_running
+    print(stat.names())
+    print(stat.get('cpu'))
+    print(stat.get('cpu0'))
+    print(stat.get('ctxt'))
+    print(stat.cpu)
+    print(stat.cpu.user)
+    print(stat.cpu.nice)
+    print(stat.cpu.sys)
+    print(stat.cpu.idle)
+    print(stat.processes)
+    print(stat.processes)
+    print(stat.procs_running)

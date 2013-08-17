@@ -8,7 +8,7 @@ class ProcFile(object):
 
     def _readfile(self):
         with open(self.filename) as opened_file:
-            return [line.strip() for line in opened_file.xreadlines() if line.strip() and '#' not in line[0]]
+            return [line.strip() for line in opened_file if line.strip() and '#' not in line[0]]
 
     def _readfile_inblocks(self):
         with open(self.filename) as opened_file:

@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class Consoles(ProcFile):
@@ -13,7 +13,7 @@ class Consoles(ProcFile):
         for line in self._readfile():
             console_info = line.replace('(', '').replace(')', '').split()
             if name == console_info[0]:
-		major, minor = console_info[-1].split(':')	
+                major, minor = console_info[-1].split(':')	
                 return [console_info[1], ''.join(console_info[2:-1]), major, minor]
 
         else:
@@ -28,9 +28,9 @@ class Consoles(ProcFile):
 
 if __name__ == '__main__':
     consoles = Consoles()
-    print consoles.names()
-    print consoles.get('tty0')
-    print consoles.tty0.operations
-    print consoles.tty0.flags
-    print consoles.tty0.major
-    print consoles.tty0.minor
+    print(consoles.names())
+    print(consoles.get('tty0'))
+    print(consoles.tty0.operations)
+    print(consoles.tty0.flags)
+    print(consoles.tty0.major)
+    print(consoles.tty0.minor)

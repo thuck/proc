@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class Modules(ProcFile):
@@ -37,11 +37,11 @@ class Modules(ProcFile):
 if __name__ == '__main__':
     modules = Modules()
     #print modules.value
-    print modules.names()
-    print modules.get('i915')
-    print modules.get('i915a')
-    print modules.i915.memory_offset
-    print modules.i915.instances_counter
-    print modules.i915.dependency
-    print modules.i915.state
-    print modules.i915.memory_size
+    print(modules.names())
+    print(modules.get('i915'))
+    print(modules.get('i915a'))
+    print(modules.i915.memory_offset)
+    print(modules.i915.instances_counter)
+    print(modules.i915.dependency)
+    print(modules.i915.state)
+    print(modules.i915.memory_size)

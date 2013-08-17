@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 
 class CMDLine(ProcFile):
     filename = '/proc/cmdline'
@@ -30,10 +30,10 @@ class CMDLine(ProcFile):
 
 if __name__ == '__main__':
     a = CMDLine()
-    print a.value
-    print a.parameters()
-    print a.has_parameter('BOOT_IMAGE')
-    print a.has_parameter('BOOT_IMAGEL')
-    print a.get('BOOT_IMAGE')
-    print a.get('BOOT_IMAGEL')
+    print(a.value)
+    print(a.parameters())
+    print(a.has_parameter('BOOT_IMAGE'))
+    print(a.has_parameter('BOOT_IMAGEL'))
+    print(a.get('BOOT_IMAGE'))
+    print(a.get('BOOT_IMAGEL'))
     

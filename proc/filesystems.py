@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class Filesystems(ProcFile):
@@ -43,9 +43,9 @@ class Filesystems(ProcFile):
 
 if __name__ == '__main__':
     filesystem = Filesystems()
-    print filesystem.value
-    print filesystem.names()
-    print filesystem.ext4
-    print filesystem.ext4.used
-    print filesystem.sockfs
-    print filesystem.sockfs.used
+    print(filesystem.value)
+    print(filesystem.names())
+    print(filesystem.ext4)
+    print(filesystem.ext4.used)
+    print(filesystem.sockfs)
+    print(filesystem.sockfs.used)

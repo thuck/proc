@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 
 class Uptime(ProcFile):
     filename = '/proc/uptime'
@@ -13,5 +13,5 @@ class Uptime(ProcFile):
 
 if __name__ == '__main__':
     uptime = Uptime()
-    print uptime.total
-    print uptime.idle
+    print(uptime.total)
+    print(uptime.idle)
