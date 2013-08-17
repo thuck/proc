@@ -1,5 +1,5 @@
 from .basic import ProcFile
-from collections import namedtuple
+
 
 class MemInfo(ProcFile):
     filename = '/proc/meminfo'
@@ -25,6 +25,6 @@ class MemInfo(ProcFile):
 
 
 if __name__ == '__main__':
-    meminfo = MemInfo()
-    print(meminfo.memtotal)
-    print(meminfo.memfree)
+    MEMINFO = MemInfo()
+    print(MEMINFO.memtotal)
+    print(MEMINFO.memfree)
