@@ -1,5 +1,6 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
+
 
 class KAllSyms(ProcFile):
     filename = '/proc/kallsyms'
@@ -8,7 +9,7 @@ class KAllSyms(ProcFile):
     def names(self):
         return [field.split()[2] for field in self._readfile()]
 
-    def get(self, ksym_name, default = None):
+    def get(self, ksym_name, default=None):
         for line in self._readfile():
             ksym_info = line.split()
             if ksym_name == ksym_info[2]:
@@ -26,10 +27,8 @@ class KAllSyms(ProcFile):
             raise AttributeError
 
 if __name__ == '__main__':
-    kallsyms = KAllSyms()
-#    print kallsyms.names()
-    print kallsyms.get('show_ep_bInterval')
-    print kallsyms.show_ep_bInterval.address
-    print kallsyms.show_ep_bInterval.type
-    print kallsyms.show_ep_bInterval.module
-    
+    KALLSYMS = KAllSyms()
+    print(KALLSYMS.get('show_ep_bInterval'))
+    print(KALLSYMS.show_ep_bInterval.address)
+    print(KALLSYMS.show_ep_bInterval.type)
+    print(KALLSYMS.show_ep_bInterval.module)

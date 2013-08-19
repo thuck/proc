@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class SlabInfo(ProcFile):
@@ -37,6 +37,6 @@ class SlabInfo(ProcFile):
 if __name__ == '__main__':
     slabinfo = SlabInfo()
 #    print slabinfo.names()
-    print slabinfo.get('nfsd4_lockowners')
-    print slabinfo.nfsd4_lockowners
+    print(slabinfo.get('nfsd4_lockowners'))
+    print(slabinfo.nfsd4_lockowners)
 

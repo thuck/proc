@@ -1,4 +1,4 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
 
 class Version(ProcFile):
@@ -18,7 +18,7 @@ class Version(ProcFile):
 
 if __name__ == '__main__':
     version = Version()
-    print version.value
-    print version.ostype
-    print version.osrelease
-    print version.osversion
+    print(version.value)
+    print(version.ostype)
+    print(version.osrelease)
+    print(version.osversion)

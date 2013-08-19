@@ -1,5 +1,6 @@
-from basic import ProcFile
+from .basic import ProcFile
 from collections import namedtuple
+
 
 class Partitions(ProcFile):
     filename = '/proc/partitions'
@@ -8,7 +9,7 @@ class Partitions(ProcFile):
     def names(self):
         return [line.split()[3].lower() for line in self._readfile()[1:]]
 
-    def get(self, p_name, default = None):
+    def get(self, p_name, default=None):
         for line in self._readfile():
             p_info = line.split()
             if p_name == p_info[3]:
@@ -27,10 +28,10 @@ class Partitions(ProcFile):
 
 
 if __name__ == '__main__':
-    partitions = Partitions()
-    print partitions.names()
-    print partitions.get('sda1')
-    print partitions.sda1.major
-    print partitions.sda1.minor
-    print partitions.sda1.blocks
-    print partitions.sda6.blocks
+    PARTITIONS = Partitions()
+    print(PARTITIONS.names())
+    print(PARTITIONS.get('sda1'))
+    print(PARTITIONS.sda1.major)
+    print(PARTITIONS.sda1.minor)
+    print(PARTITIONS.sda1.blocks)
+    print(PARTITIONS.sda6.blocks)

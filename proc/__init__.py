@@ -1,20 +1,21 @@
-from cmdline import CMDLine
-from modules import Modules
-from filesystems import Filesystems
-from cgroups import CGroups
-from diskstats import DiskStats
-from stat import Stat
-from softirqs import SoftIrqs
-from uptime import Uptime
-from loadavg import LoadAvg
-from version import Version
-from vmstat import VMStat
-from meminfo import MemInfo
-from partitions import Partitions
-from slabinfo import SlabInfo
-from kallsyms import KAllSyms
-from process import Process
-from consoles import Consoles
+from .cmdline import CMDLine
+from .modules import Modules
+from .filesystems import Filesystems
+from .cgroups import CGroups
+from .diskstats import DiskStats
+from .stat import Stat
+from .softirqs import SoftIrqs
+from .uptime import Uptime
+from .loadavg import LoadAvg
+from .version import Version
+from .vmstat import VMStat
+from .meminfo import MemInfo
+from .partitions import Partitions
+from .slabinfo import SlabInfo
+from .kallsyms import KAllSyms
+from .process import Process
+from .consoles import Consoles
+from .interrupts import Interrupts
 
 cmdline = CMDLine()
 modules = Modules()
@@ -33,3 +34,4 @@ slabinfo = SlabInfo()
 kallsyms = KAllSyms()
 process = Process()
 consoles = Consoles()
+interrupts = Interrupts()
